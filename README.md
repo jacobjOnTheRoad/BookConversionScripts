@@ -1,26 +1,45 @@
-To use:
+BookConversionScripts
+Scripts to convert Markdown manuscripts to PDF and EPUB for self-publishing.
 
-Copy all the scripts into a folder.  Your book contents should be in the same folder in .md files.  I've been using UTF-8 text file format.
+Prerequisites
 
-Open a terminal and run ./monitor.sh.  It will watch the folder for any saves.  Any time you save, it will kick off both generate_PDF.sh and generate_epub.sh - your .md files will have their contents copied into each in sequential sort order by the .md file name.  When the script finishes, you should have a PDF file and an epub file (this is used by Amazon KDP).  Note that every time you save, it overwrites the previous of both of those two, so if you want to keep old versions around, copy / save off at some point for each checkpoint you want.
+Pandoc: For converting Markdown to PDF/EPUB.
+TeX Live (for PDF output): Includes latexmk for LaTeX-based PDF generation.
+Python (optional, if scripts use Python): Version 3.x.
 
-Make sure to keep those checkpoints in a different folder -> by copying away the .pdf and .epub files when you reach good points.
+Installation
 
-The file watcher will keep running as long as your terminal is open running the script.  If there are ever any errors, you should be able to see them in the terminal history.
+Clone the repository:git clone https://github.com/jacobjOnTheRoad/BookConversionScripts.git
+cd BookConversionScripts
 
-Here are the basics / how to use mark down for the simplest stuff in your text .md files:
 
-If you want a new page (page break), put a \newpage on a line by itself in your story.md file:
-The markdown for each instance below will in turn get converted into the appropriate tags for PDF and epub by their different generation scripts.
+Install dependencies:
+On macOS: brew install pandoc texlive
+On Ubuntu: sudo apt-get install pandoc texlive-full
+On Windows: Download installers from the Pandoc and TeX Live websites.
 
-\newpage
 
-If you want a chapter title, put a '#' character followed by a space, then the name of the chapter, like this:
-# Chapter 1
-or
-# A New Beginning
 
-If you want a subheader, put two of those: '##' followed by a space, then the subheader:
-## Things get interesting
-or
-## Bugs get Burgled
+Markdown Formatting for Conversion
+To create a chapter title in your Markdown file, use a single #:
+# Chapter One
+
+For subheadings, use ## or ###:
+## Section Title
+### Subsection Title
+
+For a page break in PDF output (using Pandoc), use three dashes:
+---
+
+Usage
+
+Place your Markdown file (e.g., book.md) in the repository directory.
+Run the monitor.sh script.  It will watch the directory for any file changes as long as the terminal is open.  Any time you save a file (for instance your book.md file or files) it will automatically run the generate_PDF.sh and generate_epub.sh for you.
+Therefore, any time you save your .md file(s), you should get a pdf file and an epub file version of your book.
+
+Remember that since your .epub and .pdf files are over-written any time you save your book files, it is up to you to save off those files to another folder any time you get to a good stopping point in order to have some version history.
+
+Contributing
+Submit issues or pull requests to improve the scripts!
+License
+MIT License
